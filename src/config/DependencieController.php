@@ -55,8 +55,11 @@ $container['serializer'] = function ($result)
 	return new Serializer(array($normalizer), array($encoder));
 };
 
-
-
+// Exercício 1
+$container['fizBuzService'] = function ($c) 
+{
+    return new Service\FizBuzService();
+};
 
 
 
