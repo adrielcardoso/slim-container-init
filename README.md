@@ -6,21 +6,9 @@ This skeleton application was built for Composer. This makes setting up a new Sl
 
 ## Install the Application
 
-Run this command from the directory in which you want to install your new Slim Framework application.
+1 - Baixar o código fonte, instalar as dependencias via composer install 
 
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
+2 - Configurar em src/Config/DependencieController a credencial de acesso ao banco, estamos utilizando doctrine caso queira alterar o banco pradrão não esqueça de mudar o driver;
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
-
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
-
-To run the application in development, you can also run this command. 
-
-	php composer.phar start
-
-Run this command to run the test suite
-
-	php composer.phar test
-
-That's it! Now go build something cool.
+3 - Analisar arquivo de roteamento, onde encontrara as definições de entrada e saída
+ 
