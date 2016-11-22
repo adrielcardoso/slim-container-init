@@ -6,9 +6,9 @@ This skeleton application was built for Composer. This makes setting up a new Sl
 
 ## Install the Application
 
-1 - Baixar o código fonte, instalar as dependencias via composer install 
+1 - Baixar o código fonte, instalar as dependências por "composer install"
 
-2 - Configurar em src/Config/DependencieController a credencial de acesso ao banco, estamos utilizando doctrine caso queira alterar o banco pradrão não esqueça de mudar o driver;
+2 - Configurar em src/config/DependencieController a credencial de acesso ao banco, estamos utilizando doctrine caso queira alterar o banco pradrão não esqueça de mudar o driver;
 
-3 - Analisar arquivo de roteamento, onde encontrara as definições de entrada e saída
+3 - Analisar arquivo de roteamento em "src/config/RouteController", onde encontrara as definições de entrada e saída
  
