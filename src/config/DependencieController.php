@@ -13,9 +13,10 @@ $container = $app->getContainer();
 // conectar banco de dados 
 $container['dbconnect'] = function ($c) 
 {
-	$host = 'XXXX';
-	$user = 'XXXX';
-	$passw = 'XXXXX';
+	$host = 'xxx';
+	$user = 'xxx';
+	$database = 'xxx';
+	$passw = 'xxx';
 
 	$paths = array("/../Entity");
 	$isDevMode = true;
@@ -25,7 +26,7 @@ $container['dbconnect'] = function ($c)
 	    'driver'   => 'pdo_mysql',
 	    'user'     => $user,
 	    'password' => $passw,
-	    'dbname'   => $user,
+	    'dbname'   => $database,
 	    'host'     => $host
 	);
 

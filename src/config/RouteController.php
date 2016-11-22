@@ -2,10 +2,29 @@
 
 
 /**
-*@path http://localhost/miniProjeto/public
-*@Method GET
-*/
-$app->get('/', function ($request, $response, $args = []) 
+*	@Method GET
+*
+* 	request: http://localhost/miniProjeto/public/tarefa
+*
+*	response: 
+*
+*	[
+*	   {
+*	      "id":7,
+*	      "titulo":"asdddd",
+*	      "descricao":"asdsadasd"
+*	   },
+*	   {
+*	      "id":8,
+*	      "titulo":"asdddd",
+*	      "descricao":"asdsadasd"
+*	   }
+*	]
+*
+*	... 
+*
+**/
+$app->get('/tarefa', function ($request, $response, $args = []) 
 {
 	$service = $this->get('tarefaService');
 
@@ -15,12 +34,59 @@ $app->get('/', function ($request, $response, $args = [])
 });
 
 
+/**
+*	@Method GET
+*
+* 	request: http://localhost/miniProjeto/public/tarefa/{id}
+*
+*	response: 
+*
+*	[
+*	   {
+*	      "id":7,
+*	      "titulo":"asdddd",
+*	      "descricao":"asdsadasd"
+*	   }
+*	]
+*
+*	... 
+*
+**/
+$app->get('/tarefa/{id}', function ($request, $response, $args = []) 
+{
+	$tarefaEntity = $this->get('dbconnect')->find('Entity\TarefaEntity', $args['id']);
+
+	return $this->get('serializer')->serialize(
+		isset($tarefaEntity) ? $tarefaEntity : [], 'json');
+});
+
+
+
 
 /**
-*@path http://localhost/miniProjeto/public
-*@Method POST
-*/
-$app->post('/', function ($request, $response, $args = []) 
+*	@Method POST
+*
+* 	request: http://localhost/miniProjeto/public/tarefa
+*	{
+*		"titulo" : "Nome do titulo", 
+*		"descricao" : "descricao"
+*	}
+*
+*
+*	response: 
+*
+*	[
+*	   {
+*	      "id":1,
+*	      "titulo":"Nome do titulo",
+*	      "descricao":"descricao"
+*	   }
+*	]
+*
+*	... 
+*
+**/
+$app->post('/tarefa', function ($request, $response, $args = []) 
 {
 	$service = $this->get('formService');
 
@@ -28,16 +94,35 @@ $app->post('/', function ($request, $response, $args = [])
 
 	$tarefaService = $this->get('tarefaService')->create($this, $entity);
 
-	return $this->get('serializer')->serialize($tarefaService, 'json');
+	return $this->get('serializer')->serialize($entity, 'json');
 });
 
 
 
 /**
-*@path http://localhost/miniProjeto/public
-*@Method PUT
-*/
-$app->put('/{id}', function ($request, $response, $args = []) 
+*	@Method PUT
+*
+* 	request: http://localhost/miniProjeto/public/tarefa/{id}
+*	{
+*		"titulo" : "Nome do titulo2", 
+*		"descricao" : "descricao2"
+*	}
+*
+*
+*	response: 
+*
+*	[
+*	   {
+*	      "id":1,
+*	      "titulo":"Nome do titulo2",
+*	      "descricao":"descricao2"
+*	   }
+*	]
+*
+*	... 
+*
+**/
+$app->put('/tarefa/{id}', function ($request, $response, $args = []) 
 {
 	$service = $this->get('formService');
 
@@ -49,17 +134,31 @@ $app->put('/{id}', function ($request, $response, $args = [])
 	}
 
 	$entity = $service->dataBind($service->formRaw(), $tarefaEntity);
-	$tarefaService = $this->get('tarefaService')->create($this, $entity);
+	$tarefaService = $this->get('tarefaService')->update($this, $entity);
 
 	return $this->get('serializer')->serialize($tarefaService, 'json');
 });
 
 
 /**
-*@path http://localhost/miniProjeto/public
-*@Method DELETE
-*/
-$app->delete('/{id}', function ($request, $response, $args = []) 
+*	@Method DELETE
+*
+* 	request: http://localhost/miniProjeto/public/tarefa/{id}
+*
+*	response: 
+*
+*	[
+*	   {
+*	      "id":1,
+*	      "titulo":"Nome do titulo2",
+*	      "descricao":"descricao2"
+*	   }
+*	]
+*
+*	... 
+*
+**/
+$app->delete('/tarefa/{id}', function ($request, $response, $args = []) 
 {
 	$service = $this->get('formService');
 

@@ -12,16 +12,7 @@ Class TarefaService{
 
 		$query = $em->createQuery('SELECT u FROM Entity\TarefaEntity u');
 
-		$data =[];
-		foreach ($query->getResult() as $key => $value) {
-			array_push($data, [
-				'id'        => $value->getId(),
-				'titulo'    => $value->getTitulo(),
-				'descricao' => $value->getDescricao()
-			]);
-		}
-
-		return $data;
+		return $query->getResult();
 	}
 
 	public function create($context, $entity)
@@ -45,5 +36,16 @@ Class TarefaService{
 	    $em->flush();
 
 	    return ['message' => 'removido a tarefa ' . $id];
+	}
+
+	public function update($context, $entity)
+	{
+		$em = $context->get('dbconnect');
+		
+		$em->persist($entity);
+
+	    $em->flush();
+
+	    return $entity;
 	}
 }
